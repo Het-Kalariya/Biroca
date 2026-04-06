@@ -14,11 +14,6 @@ body {
   color: #111111;
   font-family: var(--font-sans);
   overflow-x: hidden;
-  cursor: url("/cursor.svg") 4 2, auto;
-}
-
-a, button, [role="button"], input[type="submit"] {
-  cursor: url("/cursor-pointer.svg") 8 2, pointer;
 }
 
 ::selection {
