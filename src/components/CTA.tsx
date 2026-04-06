@@ -1,24 +1,15 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Loader2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
-
-const SERVICE_ID = "service_derw7cr";
-const TEMPLATE_NOTIFY = "template_f029m2q";
-const TEMPLATE_THANKYOU = "template_bmzoomr";
-const PUBLIC_KEY = "7kSuqLDLX2ajYkCmq";
 
 export default function CTA() {
   const ref = useRef(null);
   const formRef = useRef<HTMLFormElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  useEffect(() => {
-    emailjs.init(PUBLIC_KEY);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,28 +18,37 @@ export default function CTA() {
     setStatus("sending");
 
     const form = formRef.current;
-    const templateParams: Record<string, string> = {
-      user_name: (form.querySelector('[name="user_name"]') as HTMLInputElement)?.value ?? "",
-      user_email: (form.querySelector('[name="user_email"]') as HTMLInputElement)?.value ?? "",
-      user_phone: (form.querySelector('[name="user_phone"]') as HTMLInputElement)?.value ?? "",
-      user_company: (form.querySelector('[name="user_company"]') as HTMLInputElement)?.value ?? "",
-      message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value ?? "",
+    const p = {
+      user_name: (form.querySelector('[name="user_name"]') as HTMLInputElement)?.value || "N/A",
+      user_email: (form.querySelector('[name="user_email"]') as HTMLInputElement)?.value || "",
+      user_phone: (form.querySelector('[name="user_phone"]') as HTMLInputElement)?.value || "N/A",
+      user_company: (form.querySelector('[name="user_company"]') as HTMLInputElement)?.value || "N/A",
+      message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value || "N/A",
     };
 
-    try {
-      // 1. Send notification email to Biroca
-      const notifyResult = await emailjs.send(SERVICE_ID, TEMPLATE_NOTIFY, templateParams);
-      console.log("Notification sent:", notifyResult.status, notifyResult.text);
+    console.log("Sending with params:", JSON.stringify(p));
 
-      // 2. Send thank-you email to customer (non-blocking)
-      emailjs.send(SERVICE_ID, TEMPLATE_THANKYOU, templateParams).catch((err) => {
-        console.warn("Thank-you email failed:", err);
-      });
+    try {
+      // Send notification to Biroca
+      const r = await emailjs.send(
+        "service_derw7cr",
+        "template_f029m2q",
+        p,
+        { publicKey: "7kSuqLDLX2ajYkCmq" }
+      );
+      console.log("SUCCESS:", r.status, r.text);
+
+      // Send thank-you (fire and forget)
+      emailjs.send("service_derw7cr", "template_bmzoomr", p, {
+        publicKey: "7kSuqLDLX2ajYkCmq",
+      }).catch((e) => console.warn("Thank-you failed:", JSON.stringify(e)));
 
       setStatus("sent");
       form.reset();
-    } catch (err) {
-      console.error("EmailJS error:", err);
+    } catch (err: unknown) {
+      const errObj = err as { status?: number; text?: string };
+      console.error("EmailJS FULL ERROR:", JSON.stringify(err));
+      console.error("Status:", errObj?.status, "Text:", errObj?.text);
       setStatus("error");
     }
   };
