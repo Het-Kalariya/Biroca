@@ -98,11 +98,14 @@ export default function Services() {
                   </div>
                 </div>
 
-                {/* Arrow */}
+                {/* Arrow — links to contact */}
                 <div className="md:col-span-1 hidden md:flex justify-end">
-                  <div className="w-10 h-10 rounded-full border border-[#e5e5e5] flex items-center justify-center group-hover:bg-[#111] group-hover:border-[#111] group-hover:text-white text-[#ccc] transition-all duration-500">
+                  <a
+                    href="#contact"
+                    className="w-10 h-10 rounded-full border border-[#e5e5e5] flex items-center justify-center group-hover:bg-[#111] group-hover:border-[#111] group-hover:text-white text-[#ccc] transition-all duration-500"
+                  >
                     <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform duration-500" />
-                  </div>
+                  </a>
                 </div>
               </div>
             </motion.div>
