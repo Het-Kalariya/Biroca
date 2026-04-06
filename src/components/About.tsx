@@ -76,7 +76,7 @@ export default function About() {
               {/* Stats — inline, not boxy */}
               <div className="pt-10 border-t border-[#e5e5e5] grid grid-cols-3 gap-8">
                 {[
-                  { num: "6+", label: "Projects shipped" },
+                  { num: "7+", label: "Projects shipped" },
                   { num: "100%", label: "Client retention" },
                   { num: "4.6/5", label: "Avg. rating" },
                 ].map((s, i) => (

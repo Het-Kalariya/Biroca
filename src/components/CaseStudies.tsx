@@ -68,6 +68,20 @@ const projects = [
     ],
     color: "#f0f0f5",
   },
+  {
+    title: "Voice AI Lead Engine",
+    category: "AI Automation / Sales Tech",
+    tagline:
+      "Automated 100% of outbound lead calling with AI voice agents",
+    description:
+      "Fully automated AI voice calling system using n8n that connects Airtable, ElevenLabs, and Google Drive. Detects new leads, initiates personalized AI calls, records conversations, extracts insights (budget, requirements, summaries), and syncs all data back — creating a zero-touch lead qualification pipeline.",
+    highlights: [
+      "100% Call Automation",
+      "Real-time Lead Insights",
+      "Zero Manual Follow-ups",
+    ],
+    color: "#f5f2eb",
+  },
 ];
 
 // Duplicate for seamless loop

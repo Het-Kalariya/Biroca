@@ -36,6 +36,12 @@ const testimonials = [
     name: "Rohan Iyer",
     role: "Merkleon — AI Security Platform",
   },
+  {
+    quote:
+      "The Voice AI system replaced our entire outbound calling team — and it performs better. Every new lead gets a personalized call within minutes, insights are extracted automatically, and everything syncs to Airtable without anyone lifting a finger. Our conversion rate doubled in the first month.",
+    name: "Neel Joshi",
+    role: "Voice AI Lead Engine — Sales Automation",
+  },
 ];
 
 export default function Testimonials() {
@@ -84,21 +90,13 @@ export default function Testimonials() {
                 <blockquote className="text-[clamp(1.3rem,2.5vw,2.2rem)] font-[var(--font-playfair)] font-normal leading-[1.4] tracking-[-0.01em] text-white/90 max-w-4xl">
                   &ldquo;{testimonials[current].quote}&rdquo;
                 </blockquote>
-                <div className="mt-10 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white/60 font-medium text-sm">
-                    {testimonials[current].name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <div>
-                    <p className="text-[15px] font-medium text-white">
-                      {testimonials[current].name}
-                    </p>
-                    <p className="text-[13px] text-white/40">
-                      {testimonials[current].role}
-                    </p>
-                  </div>
+                <div className="mt-10">
+                  <p className="text-[15px] font-medium text-white">
+                    {testimonials[current].name}
+                  </p>
+                  <p className="text-[13px] text-white/40 mt-1">
+                    {testimonials[current].role}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
