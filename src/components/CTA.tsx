@@ -18,31 +18,39 @@ export default function CTA() {
     setStatus("sending");
 
     try {
+      // Collect form values as strings
+      const form = formRef.current;
+      const params = {
+        user_name: (form.elements.namedItem("user_name") as HTMLInputElement)?.value || "",
+        user_email: (form.elements.namedItem("user_email") as HTMLInputElement)?.value || "",
+        user_phone: (form.elements.namedItem("user_phone") as HTMLInputElement)?.value || "",
+        user_company: (form.elements.namedItem("user_company") as HTMLInputElement)?.value || "",
+        message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "",
+      };
+
       // Send notification to Biroca
-      await emailjs.sendForm(
+      await emailjs.send(
         "service_derw7cr",
         "template_f029m2q",
-        formRef.current,
+        params,
         "7kSuqLDLX2ajYkCmq"
       );
 
       // Send thank-you email to the customer
-      const formData = new FormData(formRef.current);
-      await emailjs.send(
-        "service_derw7cr",
-        "template_bmzoomr",
-        {
-          user_name: formData.get("user_name"),
-          user_email: formData.get("user_email"),
-          user_company: formData.get("user_company"),
-          user_phone: formData.get("user_phone"),
-          message: formData.get("message"),
-        },
-        "7kSuqLDLX2ajYkCmq"
-      );
+      try {
+        await emailjs.send(
+          "service_derw7cr",
+          "template_bmzoomr",
+          params,
+          "7kSuqLDLX2ajYkCmq"
+        );
+      } catch {
+        // Thank-you email failed but notification was sent — still mark as success
+        console.warn("Thank-you email failed, but notification was sent.");
+      }
 
       setStatus("sent");
-      formRef.current.reset();
+      form.reset();
     } catch {
       setStatus("error");
     }
