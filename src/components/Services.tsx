@@ -9,21 +9,21 @@ const services = [
     num: "01",
     title: "Web Design\n& Development",
     description:
-      "Stunning, high-performance websites built to convert. Every design decision is informed by user behavior, brand strategy, and business goals — not trends.",
+      "Your website isn't a brochure. It's your hardest-working salesperson. We design and build high-performance websites where every layout decision is rooted in how real users behave, what your brand needs to say, and what action you want visitors to take. No themes. No templates. Just intentional craft from blank canvas to live product.",
     tags: ["Custom Design", "Responsive", "SEO-Optimized", "CMS Integration"],
   },
   {
     num: "02",
     title: "Custom\nSoftware",
     description:
-      "Tailored applications that fit your workflow like a glove. We build tools your team actually wants to use — eliminating workarounds and unlocking efficiency.",
+      "Off-the-shelf tools force your team to adapt to someone else's logic. We flip that. We build tailored applications — SaaS products, internal dashboards, APIs — shaped around your workflow. The result: tools your team actually wants to open every morning, not work around.",
     tags: ["SaaS Products", "Internal Tools", "API Development", "Dashboards"],
   },
   {
     num: "03",
     title: "Business\nAutomation",
     description:
-      "Intelligent systems that handle the repetitive work so your team can focus on growth. From invoicing to client onboarding — automated, reliable, and fast.",
+      "Your team shouldn't spend hours on tasks a system can handle in seconds. We design intelligent automation pipelines — from invoicing and client onboarding to reporting and scheduling — that run quietly in the background while your team focuses on the work that actually requires a human brain.",
     tags: ["Workflow Automation", "CRM Integration", "Reporting", "Scheduling"],
   },
 ];

@@ -6,23 +6,23 @@ import { useRef } from "react";
 const reasons = [
   {
     num: "01",
-    title: "Design-first thinking",
-    desc: "We start with how it looks and feels — because first impressions aren't second chances. Every interface is crafted for clarity, trust, and conversion.",
+    title: "Design-First Thinking",
+    desc: "We don't start with code. We start with how it looks and feels — because your users decide in seconds whether they trust you. Every interface we craft is built for clarity, credibility, and conversion. First impressions don't get second chances.",
   },
   {
     num: "02",
-    title: "Engineering depth",
-    desc: "Clean architecture, scalable code, and meticulous testing. We build systems that perform under pressure and evolve with your business.",
+    title: "Engineering Depth",
+    desc: "Pretty means nothing if it breaks under pressure. We write clean architecture, scalable code, and test obsessively — so your product performs on day one and still holds up three years later as your business evolves.",
   },
   {
     num: "03",
-    title: "Obsessive attention",
-    desc: "The spacing between elements. The animation timing. The loading states. We sweat the details that separate good from exceptional.",
+    title: "Obsessive Attention",
+    desc: "The spacing between elements. The animation timing. The loading states. The micro-interactions no one consciously notices but everyone unconsciously feels. We sweat the details that separate good from exceptional.",
   },
   {
     num: "04",
-    title: "Partnership mindset",
-    desc: "We don't disappear after launch. Your success is our success — we stay involved, iterate, and help you grow quarter after quarter.",
+    title: "Partnership Mindset",
+    desc: "We don't disappear after launch. Your growth is our metric. We stay involved, iterate based on real data, and help you make smarter decisions quarter after quarter. You're not hiring a vendor — you're gaining a technical partner.",
   },
 ];
 
