@@ -7,7 +7,7 @@ export default function TermsOfService() {
       {/* Simple nav */}
       <nav className="max-w-[900px] mx-auto px-6 md:px-10 py-8">
         <Link href="/">
-          <Image src="/logo.svg" alt="Biroca" width={120} height={30} className="h-[22px] w-auto" />
+          <Image src="/biroca-logo.png" alt="Biroca" width={120} height={30} className="h-[22px] w-auto" />
         </Link>
       </nav>
 

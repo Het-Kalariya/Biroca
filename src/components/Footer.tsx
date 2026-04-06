@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-12 gap-12">
           {/* Brand */}
           <div className="md:col-span-5">
-            <Image src="/logo.svg" alt="Biroca" width={140} height={36} className="h-[24px] w-auto mb-4" />
+            <Image src="/biroca-logo.png" alt="Biroca" width={140} height={36} className="h-[24px] w-auto mb-4" />
             <p className="mt-4 text-[14px] text-[#999] leading-[1.8] max-w-sm">
               Design-led technology studio for businesses
               that demand excellence in their digital presence.

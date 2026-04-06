@@ -24,90 +24,109 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Normal navbar — visible when not scrolled */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          scrolled ? "opacity-0 pointer-events-none -translate-y-4" : "opacity-100"
-        }`}
-      >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="flex items-center justify-between h-20">
-            <a href="#" className="relative z-10">
-              <Image src="/logo.svg" alt="Biroca" width={140} height={36} className="h-[28px] w-auto" priority />
+      {/* Single morphing navbar */}
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+        <motion.nav
+          animate={{
+            width: scrolled ? "auto" : "100%",
+            marginTop: scrolled ? 12 : 0,
+            borderRadius: scrolled ? 9999 : 0,
+            backgroundColor: scrolled
+              ? "rgba(255,255,255,0.92)"
+              : "rgba(255,255,255,0.95)",
+            boxShadow: scrolled
+              ? "0 4px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04)"
+              : "0 1px 0 rgba(0,0,0,0.04)",
+          }}
+          transition={{
+            duration: 0.6,
+            ease: [0.32, 0.72, 0, 1],
+          }}
+          className="backdrop-blur-xl"
+          style={{ willChange: "width, margin-top, border-radius" }}
+        >
+          <motion.div
+            animate={{
+              paddingLeft: scrolled ? 20 : 40,
+              paddingRight: scrolled ? 6 : 40,
+              paddingTop: scrolled ? 6 : 0,
+              paddingBottom: scrolled ? 6 : 0,
+              maxWidth: scrolled ? 720 : 1400,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: [0.32, 0.72, 0, 1],
+            }}
+            className="flex items-center justify-between mx-auto h-[72px]"
+            style={{
+              height: scrolled ? 52 : 72,
+              transition: "height 0.6s cubic-bezier(0.32, 0.72, 0, 1)",
+            }}
+          >
+            {/* Logo */}
+            <a href="#" className="relative z-10 flex-shrink-0">
+              <Image
+                src="/biroca-logo.png"
+                alt="Biroca"
+                width={140}
+                height={40}
+                className="w-auto transition-all duration-500"
+                style={{ height: scrolled ? 22 : 30 }}
+                priority
+              />
             </a>
 
-            <div className="hidden md:flex items-center gap-10">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  className="text-[13px] font-medium text-[#666] hover:text-[#111] transition-colors duration-300 tracking-wide uppercase"
-                >
-                  {l.label}
-                </a>
-              ))}
-              <a
+            {/* Desktop links */}
+            <div className="hidden md:flex items-center">
+              <AnimatePresence>
+                {links.map((l) => (
+                  <motion.a
+                    key={l.href}
+                    href={l.href}
+                    animate={{
+                      fontSize: scrolled ? 11 : 13,
+                      paddingLeft: scrolled ? 12 : 20,
+                      paddingRight: scrolled ? 12 : 20,
+                    }}
+                    transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                    className="font-medium text-[#555] hover:text-[#111] transition-colors duration-300 tracking-wide uppercase whitespace-nowrap"
+                  >
+                    {l.label}
+                  </motion.a>
+                ))}
+              </AnimatePresence>
+
+              <motion.a
                 href="#contact"
-                className="ml-6 px-7 py-3 bg-[#111] text-white text-[13px] font-medium tracking-wide rounded-full hover:bg-[#333] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+                animate={{
+                  paddingLeft: scrolled ? 20 : 28,
+                  paddingRight: scrolled ? 20 : 28,
+                  paddingTop: scrolled ? 8 : 12,
+                  paddingBottom: scrolled ? 8 : 12,
+                  fontSize: scrolled ? 11 : 13,
+                  marginLeft: scrolled ? 8 : 24,
+                }}
+                transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                className="bg-[#111] text-white font-medium tracking-wide rounded-full hover:bg-[#333] transition-colors duration-300 whitespace-nowrap"
               >
                 Let&apos;s Talk
-              </a>
+              </motion.a>
             </div>
 
+            {/* Mobile toggle */}
             <button
               onClick={() => setOpen(!open)}
               className="md:hidden relative z-10 w-10 h-10 flex items-center justify-center"
               aria-label="Menu"
             >
-              {open ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
+              {open ? (
+                <X size={20} strokeWidth={1.5} />
+              ) : (
+                <Menu size={20} strokeWidth={1.5} />
+              )}
             </button>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Island navbar — appears on scroll */}
-      <div
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ${
-          scrolled
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-8 pointer-events-none"
-        }`}
-      >
-        <div className="bg-[#111]/90 backdrop-blur-xl rounded-full px-3 py-2 flex items-center gap-1 shadow-[0_8px_40px_rgba(0,0,0,0.15)]">
-          <a href="#" className="px-4 py-2">
-            <Image src="/logo.svg" alt="Biroca" width={80} height={20} className="h-[16px] w-auto brightness-0 invert" />
-          </a>
-
-          <div className="hidden md:flex items-center">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="px-4 py-2 text-[12px] font-medium text-white/70 hover:text-white transition-colors duration-300 tracking-wide uppercase"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="#contact"
-            className="ml-1 px-6 py-2.5 bg-white text-[#111] text-[12px] font-semibold tracking-wide rounded-full hover:bg-white/90 transition-all duration-300"
-          >
-            Let&apos;s Talk
-          </a>
-
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden ml-1 w-9 h-9 flex items-center justify-center text-white"
-            aria-label="Menu"
-          >
-            <Menu size={18} strokeWidth={1.5} />
-          </button>
-        </div>
+          </motion.div>
+        </motion.nav>
       </div>
 
       {/* Full-screen mobile menu */}
@@ -115,7 +134,9 @@ export default function Navbar() {
         {open && (
           <motion.div
             initial={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
-            animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
+            animate={{
+              clipPath: "circle(150% at calc(100% - 40px) 40px)",
+            }}
             exit={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center"
@@ -127,6 +148,7 @@ export default function Navbar() {
             >
               <X size={24} strokeWidth={1.5} />
             </button>
+
             <nav className="flex flex-col items-center gap-8">
               {links.map((l, i) => (
                 <motion.a
@@ -135,7 +157,11 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{
+                    delay: 0.1 + i * 0.05,
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
                   className="text-4xl font-light text-[#111] tracking-tight"
                 >
                   {l.label}
@@ -146,7 +172,11 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  delay: 0.35,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className="mt-4 px-10 py-4 bg-[#111] text-white text-lg rounded-full"
               >
                 Let&apos;s Talk

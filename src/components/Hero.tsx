@@ -30,7 +30,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12"
         >
-          <Image src="/logo.svg" alt="Biroca" width={280} height={60} className="h-[50px] md:h-[65px] w-auto" priority />
+          <Image src="/biroca-logo.png" alt="Biroca" width={280} height={60} className="h-[50px] md:h-[65px] w-auto" priority />
         </motion.div>
 
         {/* Eyebrow */}
