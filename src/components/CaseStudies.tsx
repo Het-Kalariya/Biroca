@@ -1,42 +1,82 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
 
-const cases = [
+const projects = [
   {
-    client: "The Urban Plate",
-    category: "Restaurant",
-    tagline: "From phone bookings to 140% more online reservations",
+    title: "Smart Local LLM Router",
+    category: "AI / Local LLM System",
+    tagline:
+      "From single-model limitations to intelligent multi-model AI system",
     description:
-      "Complete digital overhaul — modern website with integrated table reservations, menu browsing, and automated confirmation emails. Built a real-time dashboard for staff.",
-    results: ["140% more reservations", "8 hrs/week saved", "2x web traffic"],
+      "Built a modular AI system using Ollama that dynamically routes tasks to specialized local models (coding, math, writing). Implemented chaining, self-reflection loops, tool calling, memory, and validation layers — all running locally with optimized resource usage and automatic model switching.",
+    highlights: ["Multi-model routing", "Self-improving outputs", "Zero API cost"],
+    color: "#f0f2f5",
+  },
+  {
+    title: "Radhe Offset",
+    category: "Printing / Manufacturing",
+    tagline:
+      "From manual ledger books to 100% real-time digital stock transparency",
+    description:
+      "Complete digital transformation of industrial inventory management — a high-performance system for tracking paper stock from intake to consumption. Built specialized modules for automated bundle/packet/sheet calculations, smart CSV/Excel bulk importers, and professional PDF challan generation.",
+    highlights: [
+      "Unlimited Bulk Imports",
+      "Full Stock Traceability",
+      "Instant Professional PDFs",
+    ],
     color: "#f5f0eb",
   },
   {
-    client: "PureGlow Clinic",
-    category: "Healthcare",
-    tagline: "Eliminated double-bookings and cut no-shows by 85%",
+    title: "RemindHer",
+    category: "Smart Home & Lifestyle",
+    tagline: "40% reduction in food waste and missed household tasks",
     description:
-      "Professional clinic website with online scheduling, SMS reminders, and digital patient intake. Seamless CRM integration for zero manual data entry.",
-    results: ["85% fewer no-shows", "15 hrs/week saved", "60% more inquiries"],
-    color: "#f0f0f5",
+      "An AI-integrated inventory and task management system designed for the modern kitchen. It monitors stock levels in real-time and provides proactive, context-aware reminders — ensuring seamless meal preparation and efficient household management.",
+    highlights: [
+      "Zero Forgotten Tasks",
+      "Real-time Stock Tracking",
+      "Automated Meal Prep Alerts",
+    ],
+    color: "#eef5f0",
   },
   {
-    client: "Metro Furnishings",
-    category: "E-Commerce",
-    tagline: "From zero online sales to a thriving digital storefront",
+    title: "GeoFace Sentinel",
+    category: "Security & Workforce",
+    tagline: "99.9% reduction in fraudulent attendance logs",
     description:
-      "Full e-commerce platform with real-time inventory sync, automated reorder alerts, and a loyalty program. Custom admin panel for complete business control.",
-    results: ["220% revenue growth", "90% fewer stock errors", "3,200+ customers"],
-    color: "#f0f5f0",
+      "Advanced biometric check-in system utilizing GPS geofencing to restrict login zones. Includes dual-layer authentication with AI-driven face scan and randomized active liveness challenges to prevent the use of static photos or videos.",
+    highlights: [
+      'Zero "Buddy Punching"',
+      "100% Location Accuracy",
+      "3-Second Authentication",
+    ],
+    color: "#f5f0f5",
+  },
+  {
+    title: "Merkleon",
+    category: "AI Security / Compliance",
+    tagline:
+      "From observable to provable — cryptographic proof of every AI agent action",
+    description:
+      "Full-stack AI agent security platform: tamper-evident Ed25519 + Merkle hash chain audit trail, real-time anomaly detection, PII-scrubbing Python SDK on PyPI, 26-page React dashboard, PostgreSQL multi-tenant backend, signed compliance PDF reports, and a public auditor-facing verify portal.",
+    highlights: [
+      "Court-admissible audit logs",
+      "pip install veritasagent-sdk",
+      "123 production API endpoints",
+    ],
+    color: "#f0f0f5",
   },
 ];
+
+// Duplicate for seamless loop
+const loopProjects = [...projects, ...projects];
 
 export default function CaseStudies() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const [paused, setPaused] = useState(false);
 
   return (
     <section
@@ -64,54 +104,67 @@ export default function CaseStudies() {
             </h2>
           </motion.div>
         </div>
+      </div>
 
-        {/* Scrollable cards */}
-        <div className="horizontal-scroll pb-6 -mx-6 px-6 md:-mx-10 md:px-10 lg:-mx-16 lg:px-16">
-          {cases.map((c, i) => (
+      {/* Infinite loop scroll — CSS-based for hover pause */}
+      <div
+        className="overflow-hidden group/scroll"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
+          className="flex gap-8 pl-6 md:pl-10 lg:pl-16 animate-[scroll_40s_linear_infinite]"
+          style={{
+            animationPlayState: paused ? "paused" : "running",
+            width: "max-content",
+          }}
+        >
+          {loopProjects.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 60, rotate: 1 }}
-              animate={inView ? { opacity: 1, y: 0, rotate: 0 } : {}}
+              initial={{ opacity: 0, y: 50 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.9,
-                delay: i * 0.15,
+                duration: 0.8,
+                delay: Math.min(i, 4) * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group w-[85vw] md:w-[550px] lg:w-[480px]"
+              className="group flex-shrink-0 w-[85vw] md:w-[500px] lg:w-[440px]"
             >
               <div
-                className="rounded-2xl p-8 md:p-10 h-full flex flex-col transition-transform duration-700 group-hover:-translate-y-2"
-                style={{ backgroundColor: c.color }}
+                className="rounded-2xl p-8 md:p-10 h-full flex flex-col transition-all duration-700 group-hover:-translate-y-2 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)]"
+                style={{ backgroundColor: p.color }}
               >
-                {/* Category */}
-                <div className="flex items-center justify-between mb-8">
-                  <span className="text-[11px] font-medium tracking-[0.15em] text-[#999] uppercase">
-                    {c.category}
+                {/* Category badge */}
+                <div className="mb-8">
+                  <span className="text-[10px] font-semibold tracking-[0.15em] text-[#888] uppercase">
+                    {p.category}
                   </span>
-                  <div className="w-8 h-8 rounded-full border border-[#d4d4d4] flex items-center justify-center group-hover:bg-[#111] group-hover:border-[#111] group-hover:text-white text-[#ccc] transition-all duration-500">
-                    <ArrowUpRight size={14} />
-                  </div>
                 </div>
 
-                {/* Client */}
-                <h3 className="text-[28px] md:text-[32px] font-[var(--font-playfair)] font-normal tracking-[-0.02em] text-[#111] mb-3">
-                  {c.client}
+                {/* Title */}
+                <h3 className="text-[26px] md:text-[30px] font-[var(--font-playfair)] font-normal tracking-[-0.02em] text-[#111] mb-3 leading-[1.15]">
+                  {p.title}
                 </h3>
-                <p className="text-[15px] font-medium text-[#111] mb-4">
-                  {c.tagline}
-                </p>
-                <p className="text-[14px] text-[#666] leading-[1.7] mb-8 flex-1">
-                  {c.description}
+
+                {/* Tagline */}
+                <p className="text-[14px] font-medium text-[#333] mb-4 leading-[1.5]">
+                  {p.tagline}
                 </p>
 
-                {/* Results */}
-                <div className="pt-6 border-t border-black/[0.08] flex flex-wrap gap-3">
-                  {c.results.map((r) => (
+                {/* Description */}
+                <p className="text-[13px] text-[#666] leading-[1.8] mb-8 flex-1">
+                  {p.description}
+                </p>
+
+                {/* Highlights */}
+                <div className="pt-6 border-t border-black/[0.06] flex flex-wrap gap-2">
+                  {p.highlights.map((h) => (
                     <span
-                      key={r}
-                      className="px-4 py-2 bg-white/70 rounded-full text-[12px] font-medium text-[#444] tracking-wide"
+                      key={h}
+                      className="px-4 py-2 bg-white/80 rounded-full text-[11px] font-semibold text-[#444] tracking-wide"
                     >
-                      {r}
+                      {h}
                     </span>
                   ))}
                 </div>
@@ -120,6 +173,14 @@ export default function CaseStudies() {
           ))}
         </div>
       </div>
+
+      {/* Keyframe for scroll animation */}
+      <style jsx global>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 }
