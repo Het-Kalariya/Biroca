@@ -2,30 +2,37 @@
 
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
+import Image from "next/image";
 
-const headlineWords = ["We", "craft", "digital", "experiences", "that", "move", "businesses", "forward."];
-
-const letterVariants = {
-  hidden: { y: "100%", opacity: 0 },
-  visible: (i: number) => ({
-    y: "0%",
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      delay: 0.3 + i * 0.04,
-      ease: [0.16, 1, 0.3, 1] as const,
-    },
-  }),
-};
+const headlineWords = [
+  { text: "We", italic: false },
+  { text: "craft", italic: false },
+  { text: "digital", italic: true },
+  { text: "experiences", italic: true },
+  { text: "that", italic: false },
+  { text: "move", italic: false },
+  { text: "businesses", italic: false },
+  { text: "forward.", italic: false },
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-24 pt-32 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-24 pt-32">
       {/* Subtle geometric accent */}
       <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] border border-[#e5e5e5] rounded-full opacity-40" />
       <div className="absolute top-[25%] right-[-2%] w-[400px] h-[400px] border border-[#ebebeb] rounded-full opacity-30" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 w-full">
+        {/* Logo mark */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12"
+        >
+          <Image src="/logo.svg" alt="Biroca" width={280} height={60} className="h-[50px] md:h-[65px] w-auto" priority />
+        </motion.div>
+
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -39,28 +46,29 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Headline — large serif type */}
-        <h1 className="text-reveal">
-          <span className="block text-[clamp(2.5rem,7vw,7rem)] font-[var(--font-playfair)] font-normal leading-[1.05] tracking-[-0.03em] text-[#111]">
+        {/* Headline — words that don't clip */}
+        <h1>
+          <span className="block text-[clamp(2.5rem,7vw,7rem)] font-[var(--font-playfair)] font-normal leading-[1.15] tracking-[-0.03em] text-[#111]">
             {headlineWords.map((word, i) => (
-              <span key={i} className="inline-block overflow-hidden mr-[0.25em]">
-                <motion.span
-                  className={`inline-block ${word === "digital" || word === "experiences" ? "italic text-[#999]" : ""}`}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={letterVariants}
-                >
-                  {word}
-                </motion.span>
-              </span>
+              <motion.span
+                key={i}
+                className={`inline-block mr-[0.25em] ${word.italic ? "italic text-[#999]" : ""}`}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.3 + i * 0.04,
+                  ease: [0.16, 1, 0.3, 1] as const,
+                }}
+              >
+                {word.text}
+              </motion.span>
             ))}
           </span>
         </h1>
 
         {/* Bottom row */}
         <div className="mt-16 md:mt-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
-          {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,7 +80,6 @@ export default function Hero() {
             measurable impact.
           </motion.p>
 
-          {/* CTA */}
           <motion.a
             href="#contact"
             initial={{ opacity: 0, y: 30 }}

@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-[#e5e5e5]">
@@ -5,10 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-12 gap-12">
           {/* Brand */}
           <div className="md:col-span-5">
-            <span className="text-[22px] font-bold tracking-[-0.04em] text-[#111]">
-              biroca
-              <span className="inline-block w-[6px] h-[6px] rounded-full bg-[#111] ml-[2px] mb-[2px]" />
-            </span>
+            <Image src="/logo.svg" alt="Biroca" width={140} height={36} className="h-[24px] w-auto mb-4" />
             <p className="mt-4 text-[14px] text-[#999] leading-[1.8] max-w-sm">
               Design-led technology studio for businesses
               that demand excellence in their digital presence.
@@ -22,19 +22,19 @@ export default function Footer() {
             </h4>
             <nav className="flex flex-col gap-3">
               {[
-                { label: "Work", href: "#portfolio" },
-                { label: "Services", href: "#services" },
-                { label: "Process", href: "#process" },
-                { label: "About", href: "#about" },
-                { label: "Contact", href: "#contact" },
+                { label: "Work", href: "/#portfolio" },
+                { label: "Services", href: "/#services" },
+                { label: "Process", href: "/#process" },
+                { label: "About", href: "/#about" },
+                { label: "Contact", href: "/#contact" },
               ].map((l) => (
-                <a
+                <Link
                   key={l.href}
                   href={l.href}
                   className="text-[14px] text-[#666] hover:text-[#111] transition-colors duration-300"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -46,18 +46,18 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@biroca.in"
+                href="mailto:biroca.in@gmail.com"
                 className="text-[14px] text-[#666] hover:text-[#111] transition-colors duration-300"
               >
-                hello@biroca.in
+                biroca.in@gmail.com
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+917046880662"
                 className="text-[14px] text-[#666] hover:text-[#111] transition-colors duration-300"
               >
-                +91 98765 43210
+                +91 70468 80662
               </a>
-              <span className="text-[14px] text-[#666]">India</span>
+              <span className="text-[14px] text-[#666]">Ahmedabad, Gujarat, India</span>
             </div>
           </div>
         </div>
@@ -68,18 +68,18 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Biroca. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="text-[12px] text-[#bbb] hover:text-[#111] transition-colors duration-300"
             >
-              Privacy
-            </a>
-            <a
-              href="#"
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
               className="text-[12px] text-[#bbb] hover:text-[#111] transition-colors duration-300"
             >
-              Terms
-            </a>
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
