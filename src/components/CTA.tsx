@@ -20,23 +20,25 @@ export default function CTA() {
     try {
       // Send notification to Biroca
       await emailjs.sendForm(
-        "service_biroca",    // Create this in EmailJS dashboard
-        "template_contact",  // Create this in EmailJS dashboard
+        "service_derw7cr",
+        "template_f029m2q",
         formRef.current,
-        "YOUR_PUBLIC_KEY"    // Replace with your EmailJS public key
+        "7kSuqLDLX2ajYkCmq"
       );
 
       // Send thank-you email to the customer
       const formData = new FormData(formRef.current);
       await emailjs.send(
-        "service_biroca",
-        "template_thankyou",
+        "service_derw7cr",
+        "template_bmzoomr",
         {
-          to_name: formData.get("user_name"),
-          to_email: formData.get("user_email"),
-          from_name: "Biroca",
+          user_name: formData.get("user_name"),
+          user_email: formData.get("user_email"),
+          user_company: formData.get("user_company"),
+          user_phone: formData.get("user_phone"),
+          message: formData.get("message"),
         },
-        "YOUR_PUBLIC_KEY"
+        "7kSuqLDLX2ajYkCmq"
       );
 
       setStatus("sent");
