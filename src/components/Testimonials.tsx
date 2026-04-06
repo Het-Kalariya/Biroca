@@ -42,6 +42,12 @@ const testimonials = [
     name: "Neel Joshi",
     role: "Voice AI Lead Engine — Sales Automation",
   },
+  {
+    quote:
+      "Biroca turned our outdated catalog into a luxury digital experience that our customers actually enjoy browsing. The scroll animations, the product interactions, the sheer speed — everything feels intentional and premium. Engagement jumped 150% and we finally have a website that matches the quality of our brand.",
+    name: "Aarav Malhotra",
+    role: "CONCOS — Luxury Fashion E-Commerce",
+  },
 ];
 
 export default function Testimonials() {

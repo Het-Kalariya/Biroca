@@ -82,6 +82,20 @@ const projects = [
     ],
     color: "#f5f2eb",
   },
+  {
+    title: "CONCOS",
+    category: "Fashion / E-Commerce",
+    tagline:
+      "From basic catalog to 150% higher user engagement",
+    description:
+      "Complete front-end digital revamp — modern luxury e-commerce website featuring immersive reveal-on-scroll animations, interactive product browsing, and a seamless authenticated user journey. Built a high-performance, visually striking interface focused on premium brand positioning.",
+    highlights: [
+      "150% Higher Engagement",
+      "3x Faster Load Times",
+      "Premium UX/UI",
+    ],
+    color: "#f5f0f2",
+  },
 ];
 
 // Duplicate for seamless loop
