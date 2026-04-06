@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
-import Image from "next/image";
 
 const headlineWords = [
   { text: "We", italic: false },
@@ -23,16 +22,6 @@ export default function Hero() {
       <div className="absolute top-[25%] right-[-2%] w-[400px] h-[400px] border border-[#ebebeb] rounded-full opacity-30" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 w-full">
-        {/* Logo mark */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12"
-        >
-          <Image src="/biroca-logo.png" alt="Biroca" width={280} height={60} className="h-[50px] md:h-[65px] w-auto" priority />
-        </motion.div>
-
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
