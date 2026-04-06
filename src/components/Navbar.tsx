@@ -25,22 +25,28 @@ export default function Navbar() {
   return (
     <>
       {/* Floating island navbar — always centered */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-5">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center"
+        style={{
+          padding: scrolled ? "12px 16px 0" : "0",
+          transition: "padding 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      >
         <nav
           className="flex items-center justify-between w-full gap-6 md:gap-10 backdrop-blur-md border"
           style={{
-            maxWidth: scrolled ? 640 : 1100,
-            padding: scrolled ? "8px 8px 8px 20px" : "14px 14px 14px 28px",
-            borderRadius: scrolled ? 9999 : 20,
+            maxWidth: scrolled ? 640 : "100%",
+            padding: scrolled ? "8px 8px 8px 20px" : "14px 40px",
+            borderRadius: scrolled ? 9999 : 0,
             backgroundColor: scrolled
-              ? "rgba(250,250,250,0.85)"
-              : "rgba(255,255,255,0.75)",
+              ? "rgba(250,250,250,0.92)"
+              : "rgba(255,255,255,0.95)",
             borderColor: scrolled
               ? "rgba(0,0,0,0.06)"
-              : "rgba(0,0,0,0.04)",
+              : "transparent",
             boxShadow: scrolled
               ? "0 4px 30px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.03)"
-              : "0 2px 20px rgba(0,0,0,0.03)",
+              : "0 1px 0 rgba(0,0,0,0.04)",
             transition: "all 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
