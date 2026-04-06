@@ -8,21 +8,33 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "Biroca completely transformed our digital presence. Our online reservations tripled within the first month. They didn't just build a website — they understood our restaurant.",
-    name: "Rajesh Mehta",
-    role: "The Urban Plate",
+      "The LLM Router Biroca built changed how we think about AI infrastructure. Instead of one model doing everything poorly, we now have specialized models handling each task brilliantly — and the self-reflection loops catch mistakes before we ever see them. Genuinely impressive engineering.",
+    name: "Arjun Desai",
+    role: "Smart Local LLM Router — AI System",
   },
   {
     quote:
-      "The appointment system they built eliminated our double-booking problem entirely. Patient no-shows dropped 85%. Professional, responsive, and genuinely invested in our success.",
-    name: "Dr. Priya Sharma",
-    role: "PureGlow Skincare Clinic",
+      "We were drowning in paper ledgers and spreadsheet errors. Biroca delivered a system that tracks every single sheet of paper from arrival to consumption, with zero discrepancies. The bulk import alone saves us 15 hours a week. Our entire team refused to go back to the old way after day one.",
+    name: "Mahesh Patel",
+    role: "Radhe Offset — Manufacturing",
   },
   {
     quote:
-      "We went from zero online sales to a thriving e-commerce channel in three months. The inventory automation alone paid for the entire project within weeks.",
-    name: "Ankit Patel",
-    role: "Metro Home Furnishings",
+      "RemindHer eliminated the chaos in our household. No more forgotten groceries, no more wasted food sitting in the back of the fridge. The AI reminders feel genuinely helpful — like having a thoughtful assistant who actually knows our routines. Our food waste dropped by nearly half.",
+    name: "Sneha Kapoor",
+    role: "RemindHer — Smart Home",
+  },
+  {
+    quote:
+      "Before GeoFace Sentinel, we had no way to verify if attendance logs were genuine. Now, with geofencing and live face verification, proxy attendance is physically impossible. The 3-second authentication means no queues, no complaints. It just works — every single time.",
+    name: "Vikram Rao",
+    role: "GeoFace Sentinel — Workforce Security",
+  },
+  {
+    quote:
+      "Merkleon gave us something no other vendor could — cryptographic proof that our AI agents are behaving correctly. The audit trail is tamper-evident, the anomaly detection catches issues in real-time, and the compliance reports satisfied our legal team on the first review. This is enterprise-grade work.",
+    name: "Rohan Iyer",
+    role: "Merkleon — AI Security Platform",
   },
 ];
 
@@ -60,7 +72,7 @@ export default function Testimonials() {
           </div>
 
           {/* Quote */}
-          <div className="min-h-[280px] md:min-h-[220px] relative">
+          <div className="min-h-[320px] md:min-h-[250px] relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -69,7 +81,7 @@ export default function Testimonials() {
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <blockquote className="text-[clamp(1.5rem,3vw,2.5rem)] font-[var(--font-playfair)] font-normal leading-[1.4] tracking-[-0.01em] text-white/90 max-w-4xl">
+                <blockquote className="text-[clamp(1.3rem,2.5vw,2.2rem)] font-[var(--font-playfair)] font-normal leading-[1.4] tracking-[-0.01em] text-white/90 max-w-4xl">
                   &ldquo;{testimonials[current].quote}&rdquo;
                 </blockquote>
                 <div className="mt-10 flex items-center gap-4">
