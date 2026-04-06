@@ -31,7 +31,7 @@ export default function CTA() {
     try {
       // Send notification to Biroca
       const r = await emailjs.send(
-        "service_derw7cr",
+        "service_4kdpo2k",
         "template_f029m2q",
         p,
         { publicKey: "7kSuqLDLX2ajYkCmq" }
@@ -39,7 +39,7 @@ export default function CTA() {
       console.log("SUCCESS:", r.status, r.text);
 
       // Send thank-you (fire and forget)
-      emailjs.send("service_derw7cr", "template_bmzoomr", p, {
+      emailjs.send("service_4kdpo2k", "template_bmzoomr", p, {
         publicKey: "7kSuqLDLX2ajYkCmq",
       }).catch((e) => console.warn("Thank-you failed:", JSON.stringify(e)));
 
