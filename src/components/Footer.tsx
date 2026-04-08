@@ -57,6 +57,18 @@ export default function Footer() {
               >
                 +91 70468 80662
               </a>
+              <a
+                href="tel:+919313217600"
+                className="text-[14px] text-[#666] hover:text-[#111] transition-colors duration-300"
+              >
+                +91 93132 17600
+              </a>
+              <a
+                href="tel:+919909709992"
+                className="text-[14px] text-[#666] hover:text-[#111] transition-colors duration-300"
+              >
+                +91 99097 09992
+              </a>
               <span className="text-[14px] text-[#666]">Ahmedabad, Gujarat, India</span>
             </div>
           </div>
