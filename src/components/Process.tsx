@@ -143,27 +143,28 @@ export default function Process() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
         <div
-          className="mb-20"
+          className="mb-20 text-center"
           style={{
             opacity: headerVisible ? 1 : 0,
             transform: headerVisible ? "translateY(0)" : "translateY(30px)",
             transition: "all 0.8s cubic-bezier(.4,0,.2,1)",
           }}
         >
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center justify-center gap-3 mb-8">
             <div className="w-12 h-[1px] bg-[#111]" />
             <span className="text-[12px] font-medium tracking-[0.2em] text-[#999] uppercase">
               How we work
             </span>
+            <div className="w-12 h-[1px] bg-[#111]" />
           </div>
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[var(--font-playfair)] font-normal leading-[1.15] tracking-[-0.02em] text-[#111] max-w-2xl">
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[var(--font-playfair)] font-normal leading-[1.15] tracking-[-0.02em] text-[#111] text-center">
             A process built on{" "}
             <span className="italic text-[#999]">clarity and craft.</span>
           </h2>
         </div>
 
         {/* Timeline */}
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto">
           {steps.map((step, i) => (
             <StepItem key={i} step={step} index={i} />
           ))}
